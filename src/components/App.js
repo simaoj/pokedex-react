@@ -4,18 +4,19 @@ import DetailView from './DetailView';
 import Pokemon from '../Pokemon';
 import './styles/App.css';
 
-class App extends Component{
-  constructor(){
+class App extends Component {
+  constructor() {
     super();
     this.state = {
-      pokemon : {}
+      pokemon: {}
     };
 
     this.handleOnClick = this.handleOnClick.bind(this);
+    this.handleOnClick(1);
   }
 
-  handleOnClick(id){
-    fetch(`http://pokeapi.co/api/v2/pokemon/${id}/`)
+  handleOnClick(id) {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
       .then(res => res.json())
       .then(data => {
         const pokemon = new Pokemon(data);
@@ -25,11 +26,11 @@ class App extends Component{
       .catch(err => console.log(err));
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div className="App">
-        <PokeList handleOnClick={this.handleOnClick}/>
-        <DetailView pokemon={this.state.pokemon}/>
+        <PokeList handleOnClick={this.handleOnClick} />
+        <DetailView pokemon={this.state.pokemon} />
       </div>
     );
   }
